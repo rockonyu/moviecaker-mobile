@@ -1,0 +1,32 @@
+<div id="shareTo" class="share-wrap short fixed" [hidden]="!open">
+  <ul class="share-btn short group-wrap pad0">
+    <li>
+      <a class="btn-social-share circle40 btn-wechat" (click)="notice=true">
+        <i class="fa fa-weixin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="btn-social-share circle40 btn-fb" (click)="shareTo('FB')">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="btn-social-share circle40 btn-weibo" (click)="shareTo('WB')">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="btn-social-share circle40 btn-qq" (click)="shareTo('QQ')">
+        <i class="fa fa-qq"></i>
+      </a>
+    </li>
+    <li class="text-white60p fz-m" (click)="toggle()"><i class="fa fa-times"></i></li>
+  </ul>
+  <!-- 加上 class showAlert 會出現 -->
+  <div class="weixin-alert align-bottom group-wrap top-alert short-alert" [class.showAlert]="notice">
+    <p class="text-blue fz-normal"><i class="fa fa-weixin"></i> 微信分享小叮咛</p>
+    <p class="maT4 text-white80p fz-s">目前暂时还没有直接分享到微信朋友圈的功能，请点选您手机<span class="text-blue">右上角三个点</span>选项中的分享功能就可以分享到微信。</p>
+    <button class="btn-weixinAlert pull-right bkgd-pink maL1x maT1x" (click)="notice=false">不用再提醒</button>
+    <button class="btn-weixinAlert pull-right bkgd-blue maT1x">下次再提醒</button>
+  </div>
+</div>

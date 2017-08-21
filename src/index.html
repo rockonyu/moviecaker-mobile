@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>电影蛋糕行动版</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    .vertical-centered-box {
+      position: fixed;
+      z-index: 11;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background-image: linear-gradient(-135deg, rgba(182, 231, 227, .8) 0%, rgba(128, 201, 203, .8) 100%);
+      background-color: white;
+    }
+
+    .vertical-centered-box:after {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -0.25em;
+    }
+
+    .vertical-centered-box .content {
+      box-sizing: border-box;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: left;
+      font-size: 0;
+      width: 45px;
+      height: 36px;
+    }
+
+    .loader-line-mask {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 120px;
+      height: 120px;
+      margin-left: -60px;
+      margin-top: -60px;
+      overflow: hidden;
+      -webkit-transform-origin: 50% 50%;
+      -moz-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+      -o-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+      animation: rotate 1.2s infinite linear;
+      transition: all .3s;
+    }
+
+    .loader-line-mask .loader-line {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5);
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    ;
+    @keyframes fade {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.25;
+      }
+    }
+
+    ;
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    ;
+  </style>
+</head>
+
+<body>
+  <app-root>
+    <div class="vertical-centered-box">
+      <div class="content">
+        <div class="loader-line-mask">
+          <div class="loader-line"></div>
+        </div>
+        <img width="45" src="./assets/images/logo.svg">
+      </div>
+    </div>
+  </app-root>
+</body>
+
+</html>

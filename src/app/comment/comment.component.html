@@ -1,0 +1,52 @@
+
+<section class="author-comments maT13p" *ngIf="comments.length > 0">
+  <div class="section-title fz-subtitle text-blue">回应</div>
+  <article class="padLR10 maT2x">
+    <ul class="comment-list">
+      <li *ngFor="let comment of comments">
+        <div class="comment-item">
+          <app-user-avatar class="circle-mask circle40 pull-left" [src]="comment.UserAvatar" [alt]="comment.NickName"></app-user-avatar>
+          <div class="comment-info pull-left maL1x">
+            <a href="javascript:void(0)" class="fz-normal text-light-blue" [textContent]="comment.NickName"></a><br>
+            <span class="fz-s text-gray" [textContent]="comment.CreateOn | date:'y/MM/dd HH:mm'"></span>
+            <p class="fz-s text-white60p taR likeComment" (click)="toggleLiked(comment)">
+              <i class="fa fa-heart" [class.active]="comment.IsLiked"></i> {{comment.LikedAmount}}
+            </p>
+          </div>
+          <p class="comment-content maL50 maTHalf1x" [textContent]="comment.Message"></p>
+        </div>
+        <div class="reply-item maL50" *ngFor="let reply of comment.ReplyReviewMessage">
+          <app-user-avatar class="circle-mask circle1x pull-left" [src]="reply.UserAvatar" [alt]="reply.NickName"></app-user-avatar>
+          <div class="reply-info pull-left maL1x">
+            <a href="javascript:void(0)" class="fz-s text-light-blue" [textContent]="reply.NickName"></a><br>
+            <span class="fz-xs text-gray" [textContent]="reply.CreateOn | date:'y/MM/dd HH:mm'"></span>
+            <p class="fz-s text-white60p taR likeReply" (click)="toggleLiked(reply)">
+              <i class="fa fa-heart" [class.active]="reply.IsLiked"></i> {{reply.LikedAmount}}
+            </p>
+          </div>
+          <p class="comment-content maL40 maTHalf1x" [textContent]="reply.Message"></p>
+        </div>
+      </li>
+    </ul>
+  </article>
+</section>
+
+<!--回應匡 (只有登入後才會出現) -->
+<div class="sticky sticky-bottom typeReply" *ngIf="auth.isAuthenticated() && auth.user">
+  <form action="" method="post">
+    <ul class="addComment group-wrap">
+      <li class="pull-left">
+        <div class="circle-mask circle1x">
+          <img [src]="auth.user.AvatarUrl" [alt]="auth.user.NickName" onerror="this.src='./assets/images/default_avatar.png'">
+        </div>
+      </li>
+      <li class="pull-right">
+        <button class="btn-post" type="button" (click)="send()">发表</button>
+      </li>
+      <li>
+        <textarea name="replyto" id="replysend" rows="1" class="addComment-text typeReply" placeholder="回应..." [(ngModel)]="comment"
+          show-focus="response"></textarea>
+      </li>
+    </ul>
+  </form>
+</div>

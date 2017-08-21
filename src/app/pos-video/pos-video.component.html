@@ -1,0 +1,16 @@
+<div *ngIf="video">
+  <div class="banner" [ngStyle]="{ backgroundImage: 'url('+ video.BannerUrl + '), url(' + video.PosterUrl + ')' }"></div>
+  <div class="container" style="background: #fff">
+    <img class="poster img-rounded" [src]="video.PosterUrl" />
+    <section class="text-content">
+      <h1 class="text-title text-overflow-2 text-primary">{{ video.CNName }} </h1>
+      <h1 class="text-overflow-2 text-primary">{{ video.ENName }}</h1>
+      <small class="text-muted">上映日期：{{ video.ReleaseDate }}</small>
+      <br>
+      <span class="label label-imdb" *ngIf="video.Ratings_IMDB"><span>IMDB</span>&nbsp;&nbsp;{{ video.Ratings_IMDB }}</span>
+      <span class="label label-douban" *ngIf="video.Ratings_Douban"><span>豆</span>&nbsp;&nbsp;{{ video.Ratings_Douban }}</span>
+    </section>
+    <p class="text-intro text-muted">{{ video.CNIntro }}</p>
+  </div>
+  <a class="nav-back" href="javascript:void(0)" (click)="goBack()">回到列表</a>
+</div>

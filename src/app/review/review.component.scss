@@ -1,0 +1,51 @@
+
+.bkgd-img:after {
+    background-color: rgba(238,238,238,.5);
+    height: 100.5vh;
+}
+
+.content-wrap {
+    padding-top: 5vh;
+    border-radius: 5px 5px 0 0;
+    top: 22vh;
+    height: auto;
+    background-color: rgba(12,12,12,.5);
+}
+
+.content-wrap:before {
+    content: none;
+}
+.content-wrap.scroll:before {
+    content: none;
+}
+
+
+/* -------------- Review Content CSS--------------- */
+.reviewContent {
+    border-top: 1px solid rgba(216,216,216,.2);
+}
+
+.other-review-item {
+    border-top: 1px solid rgba(238,238,238,.2);
+    display: block;
+}
+.other-review-item:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+.other-review-details {
+    width: 82%;
+}
+
+/* used line-clamp to solve for now */
+/*.other-review-details p {
+    height: 45px;
+    overflow: hidden;
+    position: relative;
+}*/
+/*.other-review-details p:after {
+    content: '...';
+    position: absolute;
+    right: -1px;
+    bottom: -3px;;
+} */

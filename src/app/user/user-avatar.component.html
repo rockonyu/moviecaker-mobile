@@ -1,0 +1,25 @@
+<img [src]="src" [alt]="alt" onerror="this.src='./assets/images/default_avatar.png'">
+
+<!-- 是不是朋友 - 登入後才會顯示 -->
+<div *ngIf="relationship && auth.isAuthenticated() && auth.user && userId!==auth.user.UserId">
+  <div *ngIf="relationship.Status===FriendStatus.ACCEPT" 
+    class="text-blue-friend btn-friendOption bkgd-light-grey">
+    <i class="fa fa-check" aria-hidden="true"></i> 朋友
+  </div>
+  <div *ngIf="relationship.Status===FriendStatus.INVITE"
+    (click)="cancel()" class="text-black btn-friendOption bkgd-light-grey">
+    <i class="fa fa-clock-o" aria-hidden="true"></i> 待确认
+  </div>
+  <div *ngIf="relationship.Status===FriendStatus.BEINVITED"
+    (click)="accept()" class="text-green btn-friendOption bkgd-light-grey">
+    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 接受邀请
+  </div>
+  <div *ngIf="relationship.Status===FriendStatus.BEINVITED"
+    (click)="reject()" class="text-black btn-friendOption bkgd-grey">
+    <i class="fa fa-clock-o" aria-hidden="true"></i> 拒绝
+  </div>
+  <div *ngIf="relationship.Status===FriendStatus.NONE"
+    (click)="invite()" class="text-white btn-friendOption bkgd-grey">
+    <i class="fa fa-user-plus" aria-hidden="true"></i> 加朋友
+  </div>
+</div>

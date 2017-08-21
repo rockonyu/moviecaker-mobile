@@ -1,0 +1,18 @@
+<div class="search-area group-wrap" [class.searching]="open">
+  <form>
+    <button class="btn-close group-wrap" type="reset" [class.searching]="open" (click)="toggle()">
+      <i class="fa fa-angle-right" aria-hidden="true"></i>
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </button>
+    <div class="search-keyword ui" [class.searching]="open">
+      <i class="fa fa-search fa-lg pull-left" aria-hidden="true"></i>
+      <input #searchInput class="pull-left" type="search" (click)="openSearch()" placeholder="寻找电影..." />
+    </div>
+  </form>
+  <a href="javascript:void(0)" *ngIf="result.Total > result.Data.length" class="more pull-right" [class.searching]="open"><i class="fa fa-angle-right padR1x" aria-hidden="true"></i>更多搜尋結果</a>
+  <div class="search-result">
+    <ul class="ui-autocomplete">
+      <li class="ui-menu-item" *ngFor="let item of result.Data">{{ item.lableCn }}</li>     
+    </ul>
+  </div>
+</div>

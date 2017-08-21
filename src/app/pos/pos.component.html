@@ -1,0 +1,40 @@
+<div class="content">
+	<div [ngClass]="{blur:blurScreen}">
+		<div class="header">
+			<div class="container" *ngIf="posInfo">
+				<h3 class="text-overflow">{{ posInfo.NickName }}</h3>
+			</div>
+		</div>
+		<ul class="nav ma-B-1x">
+			<li class="nav-item" [ngClass]="{'active': item.value===selectedOrder }" *ngFor="let item of orders">
+				<a class="text-muted" [routerLink]="['/pos/', this.posId, item.value]">{{ item.text }}</a>
+			</li>
+		</ul>
+		<div class="container">
+			<select class="form-control ma-B-1x" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}" (ngModelChange)="changeCategory(selectedCategory)">
+        	<option value="">全部类型</option>
+			<option *ngFor="let item of categories" [value]="item.ID">{{ item.Name }}</option>
+		</select>
+			<div class="row">
+				<div *ngFor="let item of videos;let i = index" class="col-sm-4 col-md-3 col-lg-3">
+					<a href="javascript:void(0)" (click)="goToVideo(item.Id)">
+						<div class="card">
+							<span>{{ i + 1 }}</span>
+							<img [src]="item.PosterUrl+ '?width=200&height=300&stretch=fill'" class="poster img-rounded">
+							<div class="card-content">
+								<p class="text-title text-overflow-2 text-primary">{{item.CNName}}</p>
+								<p class="text-overflow-2 text-primary">{{item.ENName}}</p>
+								<small class="text-muted">上映日期：{{ item.ReleaseDate }}</small>
+								<br>
+								<span class="label label-imdb" *ngIf="item.Ratings_IMDB"><span>IMDB</span>&nbsp;&nbsp;{{ item.Ratings_IMDB }}</span>
+								<span class="label label-douban" *ngIf="item.Ratings_Douban"><span>豆</span>&nbsp;&nbsp;{{ item.Ratings_Douban }}</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<a class="nav-back" href="javascript:void(0)" (click)="backToTop()">回到顶端</a>
+		</div>
+	</div>
+	<app-loading *ngIf="blurScreen"></app-loading>
+</div>

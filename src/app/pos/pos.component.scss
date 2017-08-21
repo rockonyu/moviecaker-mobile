@@ -1,0 +1,218 @@
+a {
+  text-decoration: none;
+}
+
+small {
+  font-size: 85%;
+}
+
+.ma-B-1x {
+  margin-bottom: 8px;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-overflow-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 80%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.label-imdb {
+  background-color: #ffd400;
+  box-shadow: 0 2px 0 0 #caa802;
+  color: #000;
+}
+
+.label-douban {
+  background-color: #64BA57;
+  box-shadow: 0 2px 0 0 #46863C;
+  color: #fff;
+}
+
+.poster {
+  margin: 0 auto;
+  box-shadow: 0 0 0.2em;
+  width: 6em;
+  height: 9em;
+  color: black;
+}
+
+.img-rounded {
+  border-radius: .2em;
+}
+
+.text-primary {
+  color: #2e839f!important;
+}
+
+.text-muted {
+  color: #636c72!important;
+}
+
+.content {
+  background: #efefef;
+  min-height: 100vh;
+}
+
+.header {
+  background: #2e839f;
+  background: -webkit-linear-gradient(45deg, #2e839f 0%, #b7e7e4 100%);
+  background: linear-gradient(45deg, #2e839f 0%, #b7e7e4 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e839f', endColorstr='#b7e7e4',GradientType=1 );
+  height: 3em;
+  position: static;
+}
+
+.header > .container {
+  color: white;
+  font-size: 1.5em;
+  line-height: 2em;
+}
+
+.nav {
+    background: #FFF;
+    height: 3em;
+    .nav-item {
+        display: inline-block;
+        width: 33.3%;
+        line-height: 2.8em;
+        text-align: center;
+        border-bottom: .25em solid transparent;
+        &.active {
+           border-color: #345;
+        }
+    }
+}
+
+.nav-back {
+  position: fixed;
+  bottom: 4em;
+  right: 0;
+  left: 0;
+  margin: auto;
+  background-color: rgba(80, 80, 80, .9);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 3px;
+  z-index: 2;
+  width: 4em;
+}
+
+.card {
+    position: relative;
+    padding: 5px 0 5px 5px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 0px #ddd;
+    background: #fff;
+    & > img.poster {
+      margin: .5em 0 0 .2em;
+    }
+    & > .card-content {
+      display: inline-block;
+      position: absolute;
+      margin: .5em 0 0 .5em;
+      padding-right: .2em;
+    }
+    & > span {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      left: -5px;
+      width: 40px;
+      height: 1.5em;
+      text-align: center;
+      color: white;
+      border-radius: 0 5px 5px 0px;
+      background: #f39004;
+      &:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        bottom: -4px;
+        width: 4px;
+        background: #945701;
+        height: 4px;
+      }
+    }
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.blur {
+  -webkit-filter: blur(5px); /* Chrome, Opera */
+     -moz-filter: blur(5px);
+      -ms-filter: blur(5px);
+          filter: blur(5px);
+}
+
+.banner {
+  height: 25vh;
+  width: 100%;
+  background-position-x: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: gainsboro;
+  box-shadow: inset 0 -16px 25px 0px #fff;
+}
+
+.text-title {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.container {
+  & > .poster {
+    float: left;
+     margin-top: -2em;
+  }
+  & .text-content {
+    display: inline-block;
+    width: 55vw;
+    margin-left: 1em;
+  }
+  & > .text-intro {
+    white-space: pre-line;
+    clear: both;
+    padding-top: 1em;
+    padding-bottom: 7em;
+  }
+}

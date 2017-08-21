@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750px" height="585px" viewBox="0 0 750 585" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.299111187 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M392.216795,548.408326 C392.216791,388.884945 392.216782,69.8380115 392.216782,69.8380115 C392.216782,64.3142024 387.754106,59.5283478 382.240277,59.1478963 L263.907196,50.9829701 C262.25639,50.8690652 259.728826,51.3930129 258.25305,52.1577356 L193.288009,85.8215372 C192.795687,86.07665 192.079304,85.971822 191.683266,85.5828257 L138.122587,32.9743702 C136.939201,31.8120223 134.677641,30.5741237 133.045139,30.2035177 L1.38344341e-14,0 L0.771826944,446.162505 C0.778519188,450.031026 3.77228702,454.106509 7.47007619,455.268961 L113.980976,488.752164 C119.250719,490.408782 123.549346,487.273131 123.582185,481.755975 L123.998109,411.877426 C123.999727,411.605495 124.16333,411.552952 124.348276,411.744291 L167.230625,456.10918 C171.069578,460.080855 178.006313,460.991242 182.744974,458.130079 L225.618803,432.243223 C226.09606,431.95506 226.489213,432.168901 226.49684,432.714055 L227.618347,512.87843 C227.695563,518.397751 232.087556,524.02722 237.421361,525.448019 C237.421361,525.448019 339.203475,552.655354 377.776391,561.83607 C385.961634,563.784235 391.584229,559.83606 391.584229,559.83606 C391.584229,559.83606 392.216795,553.8766 392.216795,548.408326 Z" id="path-2"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="392.216795" height="562.376217" fill="white">
+            <use xlink:href="#path-2"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Group-4" filter="url(#filter-1)" transform="translate(8.000000, 13.000000)" stroke="#FFFFFF">
+            <use id="Fill-5" mask="url(#mask-3)" stroke-width="46" xlink:href="#path-2"></use>
+            <path d="M13,12.1525052 L721.232338,6" id="Path-3" stroke-width="23"></path>
+            <path d="M397.875146,68.6055492 L721.032726,8 L721.935999,444.359027 C721.940583,446.573481 720.23865,448.883119 718.119311,449.522367 L394,547.285273" id="Path-5" stroke-width="23"></path>
+            <path d="M719.049214,147 L528.916819,193.046443 C527.305904,193.436576 526,195.086287 526,196.751689 L526,356.410939 C526,358.067157 527.296727,359.054218 528.897772,358.615203 L719.049214,306.474757" id="Path-6" stroke-width="23"></path>
+        </g>
+    </g>
+</svg>

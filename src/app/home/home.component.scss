@@ -1,0 +1,176 @@
+.bkgd-mask {
+    background: #0c0c0c 0px 0 no-repeat;
+    background-image:linear-gradient(rgba(12,12,12,0), rgba(12,12,12,1)), url(/assets/images/mob_home_bkgd.jpg);
+    position: absolute;
+	width: 100%;
+	height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+// .bkgd-mask:after {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     z-index: 1;
+//     background: transparent;
+//     // background: -webkit-linear-gradient(rgba(12,12,12,0), rgba(12,12,12,1)); /*Safari 5.1-6*/
+//     // background: -o-linear-gradient(rgba(12,12,12,0), rgba(12,12,12,1)); /*Opera 11.1-12*/
+//     // background: -moz-linear-gradient(rgba(12,12,12,0), rgba(12,12,12,1)); /*Fx 3.6-15*/
+//     // background: linear-gradient(rgba(12,12,12,0), rgba(12,12,12,1)); /*Standard*/
+//     width: 100vw;
+//     height: 90vh;
+// }
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 15px;
+    position: relative;
+    overflow-x: hidden;
+    // z-index: 5;
+}
+
+/* ---------- LOGO section ---------- */
+.logo {
+    width: 100%;
+    // margin: 0 auto;
+}
+.logo img {
+    width: 100%;
+}
+
+/* ---------- SEARCH section ---------- */
+/* 在 ng4 若要影響子 component 樣式必須使用這種特殊的寫法 `:host /deep/` */
+:host /deep/ { 
+    .search-area {
+        opacity: 1;
+        top: 7%;
+    }
+    .search-area {
+    transition: background-color .5s .05s ease,
+                top .5s .2s ease,
+                height .5s .2s ease;
+    }
+    .btn-close {
+        transition: top .5s .05s ease;
+    }
+    .btn-close.searching {
+        top: 30px;
+        transition: top .5s .1s ease;
+    }
+
+    .search-keyword {
+        margin-top: 40%;
+        transition: margin-top .6s ease;
+    }
+    .search-keyword.searching {
+        margin-top: 20%;
+        transition: margin-top .6s .05s ease;
+    }
+}
+
+/* --- adjust jquery_ui --- */
+ul.ui-autocomplete {
+    width: 100vw !important;
+    max-height: 65vh;
+    top: 26% !important;
+    left: 0 !important;
+    border: none !important;
+    background-color: transparent;
+    font-size: 1em;
+    margin-top: 5%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+li.ui-menu-item {
+    width: 100%;
+    color: #ffffff;
+    padding: 5px 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(238,238,238,.2);
+}
+div.ui-state-active {
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    color: #71cfee !important;
+    transition: color .5s;
+}
+
+/* ---------- MENU section ---------- */
+.btn-group-wrap {
+    max-height: 45vh;
+    overflow: scroll;
+    margin-top: 30%;
+}
+
+.page-btn-group {
+    margin: 0px 1% 30px 1%;
+    width: 31%;
+    text-align: center;
+}
+.page-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 1px solid rgba(113,207,238,1);
+    line-height: 60px;
+    text-align: center;
+    margin: 0 auto 10px auto;
+}
+.page-btn i {
+    font-size: 25px;
+}
+.page-title {
+    color: #eeeeee;
+    font-size: 1em;
+}
+
+.avatar {
+    overflow: hidden;
+}
+.avatar img {
+    width: 100%;
+}
+
+.homepage-btn-wrap {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 5% 0 7% 0 !important;
+    background-color: rgba(12,12,12,1);
+}
+
+.homepage-btn {
+    width: 39%;
+    height: 40px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 40px;
+    display: block;
+}
+
+.login-btn {
+    border: 1px solid rgba(113,207,238,1);
+    margin-left: 30px;
+    color: rgba(113,207,238,1);
+}
+.signup-btn {
+    border: 1px solid rgba(216,124,124,1);
+    margin-right: 30px;
+    color: rgba(216,124,124,1);
+}
+.signout-btn {
+    width: auto;
+    margin: 0 30px;
+    border: 1px solid rgba(113,207,238,1);
+    color: rgba(113,207,238,1);
+}

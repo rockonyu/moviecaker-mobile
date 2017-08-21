@@ -1,0 +1,10 @@
+<article *ngIf="otherReviews && otherReviews.Reviews.length > 0">
+  <a routerLink="/review/{{review.Id}}" class="other-review-item padTB1x group-wrap" *ngFor="let review of otherReviews.Reviews">
+    <app-user-avatar class="circle-mask circle40 pull-left maT15" [src]="review.User.AvatarUrl" [alt]="review.User.NickName"></app-user-avatar>
+    <div class="other-review-details pull-right">
+      <span class="text-light-blue fz-s">评：{{review.Video.CNName}}</span>
+      <p class="text-white80p fz-s line-clamp clamp-2" [textContent]="review.Content"></p>
+    </div>
+  </a>
+  <a *ngIf="otherReviews.Total > 0" href="javascript:void(0)" class="viewMore text-light-blue fz-s maT15">全部 <span [textContent]="otherReviews.Total"></span> 则影评</a>
+</article>

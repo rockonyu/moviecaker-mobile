@@ -1,0 +1,33 @@
+<!-- search area -->
+<app-search [open]="openSearch" (close)="closeSearch($event)"></app-search>
+
+<!-- header -->
+<div class="header" [class.scroll]="scrollbarPosition > 0" *ngIf="shown">
+  <ul class="group-wrap header-items">
+    <!-- <li id="logo" class="pull-left">
+      <a routerLink="/" class="padT3 group-wrap">
+        <img class="pull-left" src="./assets/images/logo.png" height="25" alt="MovieCaker" />
+      </a>
+    </li> -->
+    <li class="pull-left">
+      <a routerLink="/" class="padT3 group-wrap">
+        <i class="fa fa-bars maL1x padT3 pull-left" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li id="user-icon" class="pull-right">
+      <a href="javascript:void(0)" *ngIf="!isAuthenticated()" (click)="login()">
+        <div class="login-icon padTBHalfX maLHalfx">
+          <img src="./assets/images/login_icon.png" alt="">
+        </div>
+      </a>
+      <a href="javascript:void(0)" *ngIf="isAuthenticated() && auth.user" (click)="logout()">
+        <div class="circle-mask circle1x">
+          <app-user-avatar [src]="auth.user.AvatarUrl" [alt]="auth.user.NickName"></app-user-avatar>
+        </div>
+      </a>
+    </li>
+    <li id="search-icon" class="pull-right maR1x" (click)="openSearch=true">
+      <i class="fa fa-search padTBHalfX" aria-hidden="true"></i>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,132 @@
+<!-- fixed background -->
+<div *ngIf="review">
+  <div class="bkgd-img">
+    <img [src]="review.Video.PosterUrl" [alt]="review.Video.CNName" onerror="this.src='./assets/images/noMoviePoster.jpg'">
+  </div>
+  <!-- MAIN CONTENT -->
+  <div class="content-wrap">
+    <section class="movieInfo">
+      <div class="section-title fz-subtitle text-blue fontW-normal"><a class="fz-m fontW-bold" [textContent]="review.User.NickName"></a> 的影评</div>
+      <article class="padLR10 maT2x">
+        <a href="javascript:void(0)" class="avatar-large avatar-pos-right circle4x">
+          <app-user-avatar class="circle-mask circle100 rel-pos" [src]="review.User.AvatarUrl" [alt]="review.User.NickName" [userId]="review.User.Id"></app-user-avatar>
+        </a>
+        <section>
+          <h2 class="fz-m text-white"><a href="javascript:void(0)" class="text-white fontW-bold" [textContent]="review.Video.CNName"></a></h2>
+          <h3 class="fz-subtitle maTHalf1x text-white fontW-bold" [textContent]="review.Video.ENName"></h3>
+          <div class="group-wrap maT1x">
+            <div class="group-wrap hasColor pull-left width50p">
+              <span class="stars pull-left fz-subtitle">
+                <i *ngFor="let star of [1,2,3,4,5]" class="fa" [class.fa-star]="(review.User.Score/2) >= star">&nbsp;</i>
+              </span>
+              <i class="fa fa-heart maL10p maT4 pull-left" *ngIf="review.User.IsLiked"></i>
+            </div>
+            <a href="javascript:void(0)" class="pull-right text-light-blue fz-s"><i class="fa fa-angle-right padRHalfX fz-subtitle" aria-hidden="true"></i> 电影介绍页</a>
+          </div>
+        </section>
+        <div class="btn-wrap maT2x">
+          <div class="btn-playMovie" (click)="onPlay=!onPlay" *ngIf="onlineLinks.length > 0">
+            <i class="fa fa-play-circle-o"></i><span class="maLHalfx">在线看</span>
+          </div>
+          <!-- ul addClass show 會出現-->
+          <ul class="play-movie-selection" [class.show]="onPlay">
+            <li *ngFor="let video of onlineLinks">
+              <a [href]="video.Url" [textContent]="video.Name" target="_blank"></a>
+            </li>
+          </ul>
+        </div>
+        <section class="maT2x reviewContent divider-line">
+          <p class="fz-xs text-white60p taR letter-space-1x maT1x">写于 {{review.CreatedOn}}</p>
+          <div class="maT1x text-white80p fz-15 content-preline" [textContent]="review.Content"></div>
+          <!-- ul li 裡的 a addClass active 變色 -->
+          <ul class="reaction-stats maT2x" *ngIf="signIn">
+            <li class="review-heart" [class.active]="signIn.IsLiked">
+              <i class="fa fa-heart"></i> <span [textContent]="signIn.LikedNum"></span>
+            </li>
+            <li class="review-comment">
+              <i class="fa fa-comment"></i> <span [textContent]="signIn.CommentedNum"></span>
+            </li>
+            <li class="review-share" [class.active]="signIn.IsShared">
+              <i class="fa fa-share-alt"></i> <span [textContent]="signIn.SharedNum"></span>
+            </li>
+            <li>
+              <i class="fa fa-users"></i> <span [textContent]="signIn.ViewedNum"></span>
+            </li>
+          </ul>
+        </section>
+        <div class="btn-wrap maT2x group-wrap like-share-wrap" *ngIf="signIn">
+          <!-- 编辑影评只有作者到自己的影评时才会出现，其他时候都是喜欢影评 -->
+          <div class="btn-like-share pull-left bkgd-blue fz-15 btn-selfEdit" *ngIf="auth.user && review.User.Id==auth.user.UserId"
+            (click)="isEdit=true">
+            <i class="fa fa-pencil" aria-hidden="true"></i> 编辑影评
+          </div>
+          <!-- btn-like addClass active 会换色 -->
+          <div class="btn-like-share pull-left bkgd-white fz-15 btn-like" *ngIf="(auth.user && review.User.Id!=auth.user.UserId) || !auth.user"
+            (click)="toggleLiked()" [class.active]="signIn.IsLiked">
+            <i class="fa fa-heart"></i> 喜欢影评
+          </div>
+          <div id="btn-share-review" class="btn-like-share pull-right bkgd-white fz-15 btn-sharing" [class.active]="signIn.IsShared"
+            (click)="openShare=!openShare">
+            <i class="fa fa-share-alt"></i> 分享影评
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="author-other-review nextSection maT30p padLR10">
+      <div class="section-title fz-subtitle text-blue fontW-normal maB2x"><a class="fz-m fontW-bold" [textContent]="review.User.NickName"></a> 的其他影评</div>
+      <app-other-review [userId]="review.User.Id"></app-other-review>      
+    </section>
+    <app-comment [type]="'Review'" [id]="review.Id"></app-comment>
+    <app-share [open]="openShare" [type]="'Review'" [id]="review.Id" (close)="closeShare($event)"></app-share>
+  </div>
+  <!-- 修改自己的 review -->
+  <div id="writeCom" class="popTo write-edit-review" [hidden]="!isEdit" *ngIf="editReview">
+    <ul class="pop-nav group-wrap">
+      <li class="pull-left" (click)="isEdit=false">
+        <button class="btn-cancel fz-s" type="button">取消</button>
+      </li>
+      <li class="pull-right" (click)="save()">
+        <button class="btn-done fz-s" type="button">完成</button>
+      </li>
+      <li class="title">写影志</li>
+    </ul>
+    <div class="popwrap">
+      <fieldset class="fieldset">
+        <div class="text-white divider-line">
+          <span class="fz-s text-white60p fontW-normal">我看过</span><br>
+          <span class="fz-subtitle fontW-bold text-white" [textContent]="review.Video.CNName"></span><br>
+          <span class="fz-subtitle text-white" [textContent]="review.Video.ENName"></span> （<span class="fz-subtitle text-white" [textContent]="review.Video.ReleaseDate | date: 'y'"></span>）
+        </div>
+        <div class="maT2x group-wrap">
+          <div class="pull-left">
+            <span class="fz-s text-white60p">评分电影</span><br />
+            <div class="starRating fz-lg">
+               <i class="fa" [ngClass]="{ 'fa-star': editReview.User.Score>=2, 'fa-star-o': editReview.User.Score<2 }" (click)="editReview.User.Score=2"></i>
+               <i class="fa" [ngClass]="{ 'fa-star': editReview.User.Score>=4, 'fa-star-o': editReview.User.Score<4 }" (click)="editReview.User.Score=4"></i>
+               <i class="fa" [ngClass]="{ 'fa-star': editReview.User.Score>=6, 'fa-star-o': editReview.User.Score<6 }" (click)="editReview.User.Score=6"></i>
+               <i class="fa" [ngClass]="{ 'fa-star': editReview.User.Score>=8, 'fa-star-o': editReview.User.Score<8 }" (click)="editReview.User.Score=8"></i>
+               <i class="fa" [ngClass]="{ 'fa-star': editReview.User.Score>=10, 'fa-star-o': editReview.User.Score<10 }" (click)="editReview.User.Score=10"></i>
+            </div>
+          </div>
+          <div class="pull-right taR hasColor">
+            <span class="fz-s text-white60p">喜欢电影</span><br />
+            <i class="fa fz-lg" [ngClass]="{ 'fa-heart': editReview.User.IsLiked, 'fa-heart-o': !editReview.User.IsLiked }" (click)="editReview.User.IsLiked=!editReview.User.IsLiked"></i>
+          </div>
+        </div>
+        <div class="divider-line maT15 line-adjust">
+          <div class="group-wrap">
+            <label for="date" class="fz-s text-white60p pull-left">观影日期</label>
+            <div class="pull-left maL14">
+              <input name="date" type="checkbox" (click)="editReview.User.ViewedOn ? (editReview.User.ViewedOn=null) : (editReview.User.ViewedOn=currentDate)" checked="editReview.User.ViewedOn">
+              <input class="maL1x" name="date" type="date" id="date" [(ngModel)]="editReview.User.ViewedOn" [max]="currentDate" [disabled]="editReview.User.ViewedOn===null">
+            </div>
+          </div>
+        </div>
+        <div class="maT3x">
+          <textarea class="reviewContent" name="comment" id="comment" required [(ngModel)]="editReview.Content"></textarea>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="!review"></app-loading>

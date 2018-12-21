@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Component, Input, SimpleChanges, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { environment } from '../../environments/environment';
@@ -42,7 +44,7 @@ export class ShareComponent implements OnChanges {
     vm.auth.post(url, data)
       .subscribe(res => {
         url = `${environment.apiUrl}/story/getShareOptions`;
-        vm.http.post(url, data).map((res: Response) => res.json())
+        vm.http.post(url, data).pipe(map((res: Response) => res.json()))
           .subscribe(res => {
             res.Title = res.Title;
             res.Content = res.Content.replace(/(\r\n|\r|\n)/g, '');

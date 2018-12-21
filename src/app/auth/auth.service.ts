@@ -1,12 +1,15 @@
 // src/app/auth/auth.service.ts
 
+
+import {timer as observableTimer, of as observableOf,  Observable } from 'rxjs';
+
+import {mergeMap, map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
+
 import * as auth0 from 'auth0-js';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { environment } from "environments/environment";
-import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class AuthService {
@@ -56,7 +59,7 @@ export class AuthService {
     }
 
     const url = environment.apiUrl + '/api/account/userinfo';
-    return this.get(url).map((res: Response) => res.json());
+    return this.get(url).pipe(map((res: Response) => res.json()));
   }
 
   public logout(): void {
@@ -97,13 +100,13 @@ export class AuthService {
     this.unscheduleRenewal();
 
     const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
-    const source = Observable.of(expiresAt)
-      .flatMap(expiresAt => {
+    const source = observableOf(expiresAt).pipe(
+      mergeMap(expiresAt => {
         const now = Date.now();
         // Use the delay in a timer to
         // run the refresh at the proper time
-        return Observable.timer(Math.max(1, expiresAt - now));
-      });
+        return observableTimer(Math.max(1, expiresAt - now));
+      }));
 
     // Once the delay time from above is
     // reached, get a new JWT and schedule

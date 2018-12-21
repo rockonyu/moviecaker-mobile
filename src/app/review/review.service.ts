@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Review, OtherReviews } from './review';
@@ -14,39 +16,39 @@ export class ReviewService {
 
   getById(reviewId: number): Observable<Review> {
     const url = environment.apiUrl + `/api/v2/review/${reviewId}`;
-    return this.http.get(url).map((res) => res.json());
+    return this.http.get(url).pipe(map((res) => res.json()));
   }
 
   getCommentsById(reviewId: number): Observable<any> {
     const url = environment.apiUrl + '/api/review/message?reviewId=' + reviewId;
-    return this.auth.get(url).map((res) => res.json());
+    return this.auth.get(url).pipe(map((res) => res.json()));
   }
 
   getByUserId(userId: number): Observable<OtherReviews> {
     const url = environment.apiUrl + `/api/v2/user/${userId}/review?count=3`;
-    return this.http.get(url).map((res) => res.json());
+    return this.http.get(url).pipe(map((res) => res.json()));
   }
 
   getSignInById(reviewId: number): Observable<ReviewSignIn> {
     const url = environment.apiUrl + '/api/signIn/review?ids[]=' + reviewId;
-    return this.auth.get(url).map((res) => res.json()[0]);
+    return this.auth.get(url).pipe(map((res) => res.json()[0]));
   }
 
   getRandom() : Observable<Review[]>{
     const url = `${environment.apiUrl}/api/v2/review/random`;
-    return this.http.get(url).map((res) => res.json());
+    return this.http.get(url).pipe(map((res) => res.json()));
   }
 
   toggleLikedById(reviewId: number): Observable<number> {
     const url = environment.apiUrl + '/Story/Activating';
     const data = { 'id': reviewId, 'act': 'Like', 'obj' : 'Review' };
-    return this.auth.post(url, data).map((res) => res.json());
+    return this.auth.post(url, data).pipe(map((res) => res.json()));
   }
 
   commentedById(reviewId: number, message: string, replyId:number){
     const url = environment.apiUrl + '/api/review/message';
     const data = { 'message': message, 'replyId': replyId, 'reviewId': reviewId };
-    return this.auth.post(url, data).map((res) => res);
+    return this.auth.post(url, data).pipe(map((res) => res));
   }
 
   edit(review: Review): Observable<Review> {
@@ -58,6 +60,6 @@ export class ReviewService {
       'IsLiked': review.User.IsLiked,
       'ViewedOn': review.User.ViewedOn
     };
-    return this.auth.post(url, data).map((res) => res.json());
+    return this.auth.post(url, data).pipe(map((res) => res.json()));
   }
 }

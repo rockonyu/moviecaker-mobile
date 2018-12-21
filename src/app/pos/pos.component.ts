@@ -1,10 +1,13 @@
+
+import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
+
+import {debounceTime} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PosService, PosInfo } from './pos.service';
 import { VideoService, } from '../video/video.service';
 import { Video, Category } from '../video/video';
 import { Title } from '@angular/platform-browser';
-import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-pos',
@@ -40,8 +43,8 @@ export class PosComponent implements OnInit {
     private router: Router,
     private titleService: Title) {
     document.body.style.backgroundColor = 'white';
-    Observable.fromEvent(window, 'scroll')
-      .debounceTime(20)
+    observableFromEvent(window, 'scroll').pipe(
+      debounceTime(20))
       .subscribe((event) => this.checkNeedLoadMore());
   }
 

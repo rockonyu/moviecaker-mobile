@@ -1,5 +1,8 @@
+
+import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
+
+import {debounceTime} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -33,8 +36,8 @@ export class NavbarComponent implements OnInit {
       this.shown = false;
     } else {
       this.shown = true;
-      Observable.fromEvent(window, 'scroll')
-        .debounceTime(20)
+      observableFromEvent(window, 'scroll').pipe(
+        debounceTime(20))
         .subscribe((event) => this.scrollbarPosition = document.body.scrollTop);
     }
 

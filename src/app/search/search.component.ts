@@ -1,5 +1,8 @@
+
+import {fromEvent as observableFromEvent,  Observable } from 'rxjs';
+
+import {distinctUntilChanged, debounceTime, filter, map} from 'rxjs/operators';
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter, ViewChildren } from '@angular/core';
-import { Observable } from "rxjs/Observable";
 import { VideoService } from "app/video/video.service";
 
 @Component({
@@ -41,11 +44,11 @@ export class SearchComponent implements OnInit {
 
   ngAfterViewInit(){
     const elem = this.searchInput.first.nativeElement;
-    const keyup = Observable.fromEvent(elem, 'keyup')
-      .map((e: KeyboardEvent) => (<HTMLInputElement>e.target).value)
-      .filter((text) => text.length >= 2)
-      .debounceTime(500)
-      .distinctUntilChanged()
+    const keyup = observableFromEvent(elem, 'keyup').pipe(
+      map((e: KeyboardEvent) => (<HTMLInputElement>e.target).value),
+      filter((text) => text.length >= 2),
+      debounceTime(500),
+      distinctUntilChanged(),)
       .subscribe((q) => this.search(q));
   }
 
